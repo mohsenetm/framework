@@ -351,7 +351,7 @@ class ModelSerializationTest extends TestCase
     }
 
     #[WithConfig('database.default', 'testing')]
-    public function test_model_serialization_structure()
+    public function testModelSerializationStructure()
     {
         $user = ModelSerializationTestUser::create([
             'email' => 'taylor@laravel.com',
@@ -365,7 +365,7 @@ class ModelSerializationTest extends TestCase
     }
 
     #[WithConfig('database.default', 'testing')]
-    public function test_it_respects_without_relations_attribute()
+    public function testItRespectsWithoutRelationsAttribute()
     {
         $user = User::create([
             'email' => 'taylor@laravel.com',
@@ -379,7 +379,7 @@ class ModelSerializationTest extends TestCase
     }
 
     #[WithConfig('database.default', 'testing')]
-    public function test_it_respects_without_relations_attribute_applied_to_class()
+    public function testItRespectsWithoutRelationsAttributeAppliedToClass()
     {
         $user = User::create([
             'email' => 'taylor@laravel.com',
@@ -399,7 +399,7 @@ class ModelSerializationTest extends TestCase
         $this->assertEquals('hello', $unserialized->value->value);
     }
 
-    public function test_serialization_types_empty_custom_eloquent_collection()
+    public function testSerializationTypesEmptyCustomEloquentCollection()
     {
         $class = new ModelSerializationTypedCustomCollectionTestClass(
             new ModelSerializationTestCustomUserCollection());
