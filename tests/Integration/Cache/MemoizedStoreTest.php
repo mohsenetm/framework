@@ -97,7 +97,7 @@ class MemoizedStoreTest extends TestCase
         $this->assertSame(['name.0' => 'Tim', 'name.1' => 'Taylor'], $memoized);
     }
 
-    public function test_it_uses_correct_keys_for_getMultiple()
+    public function testItUsesCorrectKeysForGetMultiple()
     {
         $data = [
             'a' => 'string-value',
@@ -124,7 +124,7 @@ class MemoizedStoreTest extends TestCase
         $this->assertSame($cacheValue, $memoValue);
     }
 
-    public function test_it_uses_correct_keys_for_getMultiple_with_empty_prefix()
+    public function testItUsesCorrectKeysForGetMultipleWithEmptyPrefix()
     {
         Cache::setPrefix(null);
 

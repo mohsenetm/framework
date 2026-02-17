@@ -83,7 +83,7 @@ class TrustProxiesTest extends TestCase
      * Test the next most typical usage of TrustedProxies:
      * Trusted X-Forwarded-For header, REMOTE_ADDR for TrustedProxies.
      */
-    public function test_trusted_proxy_sets_trusted_proxies_with_REMOTE_ADDR()
+    public function testTrustedProxySetsTrustedProxiesWithRemoteAddr()
     {
         $trustedProxy = $this->createTrustedProxy($this->headerAll, 'REMOTE_ADDR');
         $request = $this->createProxiedRequest();
