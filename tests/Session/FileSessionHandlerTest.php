@@ -25,17 +25,17 @@ class FileSessionHandlerTest extends TestCase
         $this->sessionHandler = new FileSessionHandler($this->files, '/path/to/sessions', 30);
     }
 
-    public function test_open()
+    public function testOpen()
     {
         $this->assertTrue($this->sessionHandler->open('/path/to/sessions', 'session_name'));
     }
 
-    public function test_close()
+    public function testClose()
     {
         $this->assertTrue($this->sessionHandler->close());
     }
 
-    public function test_read_returns_data_when_file_exists_and_is_valid()
+    public function testReadReturnsDataWhenFileExistsAndIsValid()
     {
         $sessionId = 'session_id';
         $path = '/path/to/sessions/'.$sessionId;
@@ -52,7 +52,7 @@ class FileSessionHandlerTest extends TestCase
         $this->assertEquals('session_data', $result);
     }
 
-    public function test_read_returns_data_when_file_exists_but_expired()
+    public function testReadReturnsDataWhenFileExistsButExpired()
     {
         $sessionId = 'session_id';
         $path = '/path/to/sessions/'.$sessionId;
@@ -69,7 +69,7 @@ class FileSessionHandlerTest extends TestCase
         $this->assertEquals('', $result);
     }
 
-    public function test_read_returns_empty_string_when_file_does_not_exist()
+    public function testReadReturnsEmptyStringWhenFileDoesNotExist()
     {
         $sessionId = 'non_existing_session_id';
         $path = '/path/to/sessions/'.$sessionId;
@@ -82,7 +82,7 @@ class FileSessionHandlerTest extends TestCase
         $this->assertEquals('', $result);
     }
 
-    public function test_write_stores_data()
+    public function testWriteStoresData()
     {
         $sessionId = 'session_id';
         $data = 'session_data';
@@ -95,7 +95,7 @@ class FileSessionHandlerTest extends TestCase
         $this->assertTrue($result);
     }
 
-    public function test_destroy_deletes_session_file()
+    public function testDestroyDeletesSessionFile()
     {
         $sessionId = 'session_id';
 
@@ -107,7 +107,7 @@ class FileSessionHandlerTest extends TestCase
         $this->assertTrue($result);
     }
 
-    public function test_gc_deletes_old_session_files()
+    public function testGcDeletesOldSessionFiles()
     {
         $session = new FileSessionHandler($this->files, join_paths(__DIR__, 'tmp'), 30);
         // Set up expectations for Filesystem

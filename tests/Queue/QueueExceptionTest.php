@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class QueueExceptionTest extends TestCase
 {
-    public function test_it_can_create_timeout_exception_for_job()
+    public function testItCanCreateTimeoutExceptionForJob()
     {
         $e = TimeoutExceededException::forJob($job = new MyFakeRedisJob());
 
@@ -17,7 +17,7 @@ class QueueExceptionTest extends TestCase
         $this->assertSame($job, $e->job);
     }
 
-    public function test_it_can_create_max_attempts_exception_for_job()
+    public function testItCanCreateMaxAttemptsExceptionForJob()
     {
         $e = MaxAttemptsExceededException::forJob($job = new MyFakeRedisJob());
 

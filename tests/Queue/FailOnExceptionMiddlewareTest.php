@@ -45,7 +45,7 @@ class FailOnExceptionMiddlewareTest extends TestCase
     }
 
     #[DataProvider('middlewareDataProvider')]
-    public function test_middleware(
+    public function testMiddleware(
         string $thrown,
         FailOnException $middleware,
         bool $expectedToFail
@@ -71,7 +71,7 @@ class FailOnExceptionMiddlewareTest extends TestCase
 
     #[TestWith(['abc', true])]
     #[TestWith(['tots', false])]
-    public function test_can_test_against_job_properties($value, bool $expectedToFail): void
+    public function testCanTestAgainstJobProperties($value, bool $expectedToFail): void
     {
         FailOnExceptionMiddlewareTestJob::$_middleware = [
             new FailOnException(fn ($thrown, $job) => $job->value === 'abc'),

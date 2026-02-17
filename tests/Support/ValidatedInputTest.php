@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class ValidatedInputTest extends TestCase
 {
-    public function test_can_access_input()
+    public function testCanAccessInput()
     {
         $input = new ValidatedInput(['name' => 'Taylor', 'votes' => 100]);
 
@@ -23,7 +23,7 @@ class ValidatedInputTest extends TestCase
         $this->assertEquals(['name' => 'Taylor', 'votes' => 100], $input->all());
     }
 
-    public function test_can_merge_items()
+    public function testCanMergeItems()
     {
         $input = new ValidatedInput(['name' => 'Taylor']);
 
@@ -36,7 +36,7 @@ class ValidatedInputTest extends TestCase
         $this->assertEquals(['name' => 'Taylor', 'votes' => 100], $input->all());
     }
 
-    public function test_input_existence()
+    public function testInputExistence()
     {
         $inputA = new ValidatedInput(['name' => 'Taylor']);
 
@@ -50,7 +50,7 @@ class ValidatedInputTest extends TestCase
         $this->assertTrue($inputB->has(['name', 'votes']));
     }
 
-    public function test_exists_method()
+    public function testExistsMethod()
     {
         $input = new ValidatedInput(['name' => 'Fatih', 'surname' => 'AYDIN', 'foo' => ['bar' => null, 'baz' => '']]);
 
@@ -67,7 +67,7 @@ class ValidatedInputTest extends TestCase
         $this->assertFalse($input->exists(['votes', 'foo.bar']));
     }
 
-    public function test_has_method()
+    public function testHasMethod()
     {
         $input = new ValidatedInput(['name' => 'Fatih', 'surname' => 'AYDIN', 'foo' => ['bar' => null, 'baz' => '']]);
 
@@ -84,7 +84,7 @@ class ValidatedInputTest extends TestCase
         $this->assertFalse($input->has(['votes', 'foo.bar']));
     }
 
-    public function test_has_any_method()
+    public function testHasAnyMethod()
     {
         $input = new ValidatedInput(['name' => 'Fatih', 'surname' => 'AYDIN', 'foo' => ['bar' => null, 'baz' => '']]);
 
@@ -99,7 +99,7 @@ class ValidatedInputTest extends TestCase
         $this->assertFalse($input->hasAny(['votes', 'foo.bat']));
     }
 
-    public function test_when_has_method()
+    public function testWhenHasMethod()
     {
         $input = new ValidatedInput(['name' => 'Fatih', 'age' => '', 'foo' => ['bar' => null]]);
 
@@ -139,7 +139,7 @@ class ValidatedInputTest extends TestCase
         $this->assertNull($bar);
     }
 
-    public function test_filled_method()
+    public function testFilledMethod()
     {
         $input = new ValidatedInput(['name' => 'Fatih', 'surname' => 'AYDIN', 'foo' => ['bar' => null, 'baz' => '']]);
 
@@ -156,7 +156,7 @@ class ValidatedInputTest extends TestCase
         $this->assertFalse($input->filled(['votes', 'foo.bar']));
     }
 
-    public function test_is_not_filled_method()
+    public function testIsNotFilledMethod()
     {
         $input = new ValidatedInput(['name' => 'Fatih', 'surname' => 'AYDIN', 'foo' => ['bar' => null, 'baz' => '']]);
 
@@ -173,7 +173,7 @@ class ValidatedInputTest extends TestCase
         $this->assertTrue($input->isNotFilled(['votes', 'foo.bar']));
     }
 
-    public function test_any_filled_method()
+    public function testAnyFilledMethod()
     {
         $input = new ValidatedInput(['name' => 'Fatih', 'surname' => 'AYDIN', 'foo' => ['bar' => null, 'baz' => '']]);
 
@@ -190,7 +190,7 @@ class ValidatedInputTest extends TestCase
         $this->assertFalse($input->anyFilled(['votes', 'foo.bar']));
     }
 
-    public function test_when_filled_method()
+    public function testWhenFilledMethod()
     {
         $input = new ValidatedInput(['name' => 'Fatih', 'age' => '', 'foo' => ['bar' => null]]);
 
@@ -230,7 +230,7 @@ class ValidatedInputTest extends TestCase
         $this->assertFalse($bar);
     }
 
-    public function test_missing_method()
+    public function testMissingMethod()
     {
         $input = new ValidatedInput(['name' => 'Fatih', 'surname' => 'AYDIN', 'foo' => ['bar' => null, 'baz' => '']]);
 
@@ -247,7 +247,7 @@ class ValidatedInputTest extends TestCase
         $this->assertTrue($input->missing(['votes', 'foo.bar']));
     }
 
-    public function test_when_missing_method()
+    public function testWhenMissingMethod()
     {
         $input = new ValidatedInput(['foo' => ['bar' => null]]);
 
@@ -287,21 +287,21 @@ class ValidatedInputTest extends TestCase
         $this->assertTrue($bar);
     }
 
-    public function test_keys_method()
+    public function testKeysMethod()
     {
         $input = new ValidatedInput(['name' => 'Fatih', 'surname' => 'AYDIN', 'foo' => ['bar' => null, 'baz' => '']]);
 
         $this->assertEquals(['name', 'surname', 'foo'], $input->keys());
     }
 
-    public function test_all_method()
+    public function testAllMethod()
     {
         $input = new ValidatedInput(['name' => 'Fatih', 'surname' => 'AYDIN', 'foo' => ['bar' => null, 'baz' => '']]);
 
         $this->assertEquals(['name' => 'Fatih', 'surname' => 'AYDIN', 'foo' => ['bar' => null, 'baz' => '']], $input->all());
     }
 
-    public function test_input_method()
+    public function testInputMethod()
     {
         $input = new ValidatedInput(['name' => 'Fatih', 'surname' => 'AYDIN', 'foo' => ['bar' => null, 'baz' => '']]);
 
@@ -310,7 +310,7 @@ class ValidatedInputTest extends TestCase
         $this->assertSame('test', $input->input('foo.bat', 'test'));
     }
 
-    public function test_str_method()
+    public function testStrMethod()
     {
         $input = new ValidatedInput([
             'int' => 123,
@@ -338,7 +338,7 @@ class ValidatedInputTest extends TestCase
         $this->assertSame('', $input->str('unknown_key')->value());
     }
 
-    public function test_string_method()
+    public function testStringMethod()
     {
         $input = new ValidatedInput([
             'int' => 123,
@@ -366,7 +366,7 @@ class ValidatedInputTest extends TestCase
         $this->assertSame('', $input->string('unknown_key')->value());
     }
 
-    public function test_boolean_method()
+    public function testBooleanMethod()
     {
         $input = new ValidatedInput([
             'with_trashed' => 'false',
@@ -386,7 +386,7 @@ class ValidatedInputTest extends TestCase
         $this->assertTrue($input->boolean('with_yes'));
     }
 
-    public function test_integer_method()
+    public function testIntegerMethod()
     {
         $input = new ValidatedInput([
             'int' => '123',
@@ -411,7 +411,7 @@ class ValidatedInputTest extends TestCase
         $this->assertSame(0, $input->integer('null', 123456));
     }
 
-    public function test_float_method()
+    public function testFloatMethod()
     {
         $input = new ValidatedInput([
             'float' => '1.23',
@@ -438,7 +438,7 @@ class ValidatedInputTest extends TestCase
         $this->assertSame(0.0, $input->float('null', 123.456));
     }
 
-    public function test_date_method()
+    public function testDateMethod()
     {
         $input = new ValidatedInput([
             'as_null' => null,
@@ -465,7 +465,7 @@ class ValidatedInputTest extends TestCase
         $this->assertTrue($input->date('as_time')->isSameSecond('16:30:25'));
     }
 
-    public function test_enum_method()
+    public function testEnumMethod()
     {
         $input = new ValidatedInput([
             'valid_enum_value' => 'Hello world',
@@ -479,7 +479,7 @@ class ValidatedInputTest extends TestCase
         $this->assertNull($input->enum('invalid_enum_value', StringBackedEnum::class));
     }
 
-    public function test_enums_method()
+    public function testEnumsMethod()
     {
         $input = new ValidatedInput([
             'valid_enum_value' => 'Hello world',
@@ -493,7 +493,7 @@ class ValidatedInputTest extends TestCase
         $this->assertEmpty($input->enums('invalid_enum_value', StringBackedEnum::class));
     }
 
-    public function test_collect_method()
+    public function testCollectMethod()
     {
         $input = new ValidatedInput(['users' => [1, 2, 3]]);
 
@@ -522,7 +522,7 @@ class ValidatedInputTest extends TestCase
         $this->assertEquals(['users' => [1, 2, 3], 'roles' => [4, 5, 6], 'foo' => ['bar', 'baz'], 'email' => 'test@example.com'], $input->collect()->all());
     }
 
-    public function test_only_method()
+    public function testOnlyMethod()
     {
         $input = new ValidatedInput(['name' => 'Fatih', 'surname' => 'AYDIN', 'foo' => ['bar' => null, 'baz' => '']]);
 
@@ -532,7 +532,7 @@ class ValidatedInputTest extends TestCase
         $this->assertEquals(['name' => 'Fatih'], $input->only('name'));
     }
 
-    public function test_except_method()
+    public function testExceptMethod()
     {
         $input = new ValidatedInput(['name' => 'Fatih', 'surname' => 'AYDIN', 'foo' => ['bar' => null, 'baz' => '']]);
 

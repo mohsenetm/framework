@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class IntegerTypeTest extends TestCase
 {
-    public function test_it_may_set_min_value(): void
+    public function testItMaySetMinValue(): void
     {
         $type = JsonSchema::integer()->title('Age')->min(5);
 
@@ -18,7 +18,7 @@ class IntegerTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_it_may_set_max_value(): void
+    public function testItMaySetMaxValue(): void
     {
         $type = JsonSchema::integer()->description('Max age')->max(10);
 
@@ -29,7 +29,7 @@ class IntegerTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_it_may_set_default_value(): void
+    public function testItMaySetDefaultValue(): void
     {
         $type = JsonSchema::integer()->default(18);
 
@@ -39,7 +39,7 @@ class IntegerTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_it_may_set_enum(): void
+    public function testItMaySetEnum(): void
     {
         $type = JsonSchema::integer()->enum([1, 2, 3]);
 

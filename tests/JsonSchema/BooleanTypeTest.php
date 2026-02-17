@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class BooleanTypeTest extends TestCase
 {
-    public function test_serializes_as_boolean_with_metadata(): void
+    public function testSerializesAsBooleanWithMetadata(): void
     {
         $type = JsonSchema::boolean()->title('Enabled')->description('Feature flag');
 
@@ -18,7 +18,7 @@ class BooleanTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_may_set_default_true_via_default(): void
+    public function testMaySetDefaultTrueViaDefault(): void
     {
         $type = JsonSchema::boolean()->default(true);
 
@@ -28,7 +28,7 @@ class BooleanTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_may_set_default_false_via_default(): void
+    public function testMaySetDefaultFalseViaDefault(): void
     {
         $type = JsonSchema::boolean()->default(false);
 
@@ -38,7 +38,7 @@ class BooleanTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_may_set_enum(): void
+    public function testMaySetEnum(): void
     {
         $type = JsonSchema::boolean()->enum([true, false]);
 

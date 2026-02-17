@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 class AuthenticateSessionTest extends TestCase
 {
-    public function test_handle_without_session()
+    public function testHandleWithoutSession()
     {
         $request = new Request;
         $next = fn () => 'next-1';
@@ -27,7 +27,7 @@ class AuthenticateSessionTest extends TestCase
         $this->assertEquals('next-1', $response);
     }
 
-    public function test_handle_with_session_without_request_user()
+    public function testHandleWithSessionWithoutRequestUser()
     {
         $request = new Request;
 
@@ -43,7 +43,7 @@ class AuthenticateSessionTest extends TestCase
         $this->assertEquals('next-2', $response);
     }
 
-    public function test_handle_with_session_without_auth_password()
+    public function testHandleWithSessionWithoutAuthPassword()
     {
         $user = new class
         {
@@ -70,7 +70,7 @@ class AuthenticateSessionTest extends TestCase
         $this->assertEquals('next-3', $response);
     }
 
-    public function test_handle_with_session_with_user_auth_password_on_request_via_remember_false()
+    public function testHandleWithSessionWithUserAuthPasswordOnRequestViaRememberFalse()
     {
         $user = new class
         {
@@ -100,7 +100,7 @@ class AuthenticateSessionTest extends TestCase
         $this->assertEquals('next-4', $response);
     }
 
-    public function test_handle_with_invalid_password_hash()
+    public function testHandleWithInvalidPasswordHash()
     {
         $user = new class
         {
@@ -149,7 +149,7 @@ class AuthenticateSessionTest extends TestCase
         $this->assertNull($session->get('b'));
     }
 
-    public function test_handle_with_invalid_incookie_password_hash_via_remember_true()
+    public function testHandleWithInvalidIncookiePasswordHashViaRememberTrue()
     {
         $user = new class
         {
@@ -193,7 +193,7 @@ class AuthenticateSessionTest extends TestCase
         $this->assertNull($session->get('b'));
     }
 
-    public function test_handle_with_valid_incookie_invalid_insession_hash_via_remember_true()
+    public function testHandleWithValidIncookieInvalidInsessionHashViaRememberTrue()
     {
         $user = new class
         {
@@ -238,7 +238,7 @@ class AuthenticateSessionTest extends TestCase
         $this->assertNull($session->get('b'));
     }
 
-    public function test_handle_with_valid_password_in_session_cookie_is_empty_guard_has_user()
+    public function testHandleWithValidPasswordInSessionCookieIsEmptyGuardHasUser()
     {
         $user = new class
         {
@@ -278,7 +278,7 @@ class AuthenticateSessionTest extends TestCase
         $this->assertEquals('2', $session->get('b'));
     }
 
-    public function test_handle_with_old_format_cookie_for_backward_compatibility()
+    public function testHandleWithOldFormatCookieForBackwardCompatibility()
     {
         $user = new class
         {
@@ -318,7 +318,7 @@ class AuthenticateSessionTest extends TestCase
         $this->assertEquals('2', $session->get('b'));
     }
 
-    public function test_handle_with_old_format_cookie_and_legacy_guard()
+    public function testHandleWithOldFormatCookieAndLegacyGuard()
     {
         $user = new class
         {

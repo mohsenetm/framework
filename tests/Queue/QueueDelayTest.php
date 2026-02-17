@@ -9,7 +9,7 @@ use Orchestra\Testbench\TestCase;
 
 class QueueDelayTest extends TestCase
 {
-    public function test_queue_delay()
+    public function testQueueDelay()
     {
         Queue::fake();
 
@@ -20,7 +20,7 @@ class QueueDelayTest extends TestCase
         $this->assertEquals(60, $job->delay);
     }
 
-    public function test_queue_without_delay()
+    public function testQueueWithoutDelay()
     {
         Queue::fake();
 
@@ -31,7 +31,7 @@ class QueueDelayTest extends TestCase
         $this->assertEquals(0, $job->delay);
     }
 
-    public function test_pending_dispatch_without_delay()
+    public function testPendingDispatchWithoutDelay()
     {
         Queue::fake();
 

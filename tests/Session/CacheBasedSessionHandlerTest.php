@@ -20,19 +20,19 @@ class CacheBasedSessionHandlerTest extends TestCase
         $this->sessionHandler = new CacheBasedSessionHandler(cache: $this->cacheMock, minutes: 10);
     }
 
-    public function test_open()
+    public function testOpen()
     {
         $result = $this->sessionHandler->open('path', 'session_name');
         $this->assertTrue($result);
     }
 
-    public function test_close()
+    public function testClose()
     {
         $result = $this->sessionHandler->close();
         $this->assertTrue($result);
     }
 
-    public function test_read_returns_data_from_cache()
+    public function testReadReturnsDataFromCache()
     {
         $this->cacheMock->shouldReceive('get')->once()->with('session_id', '')->andReturn('session_data');
 
@@ -40,7 +40,7 @@ class CacheBasedSessionHandlerTest extends TestCase
         $this->assertEquals('session_data', $data);
     }
 
-    public function test_read_returns_empty_string_if_no_data()
+    public function testReadReturnsEmptyStringIfNoData()
     {
         $this->cacheMock->shouldReceive('get')->once()->with('some_id', '')->andReturn('');
 
@@ -48,7 +48,7 @@ class CacheBasedSessionHandlerTest extends TestCase
         $this->assertEquals('', $data);
     }
 
-    public function test_write_stores_data_in_cache()
+    public function testWriteStoresDataInCache()
     {
         $this->cacheMock->shouldReceive('put')->once()->with('session_id', 'session_data', 600) // 10 minutes in seconds
             ->andReturn(true);
@@ -58,7 +58,7 @@ class CacheBasedSessionHandlerTest extends TestCase
         $this->assertTrue($result);
     }
 
-    public function test_destroy_removes_data_from_cache()
+    public function testDestroyRemovesDataFromCache()
     {
         $this->cacheMock->shouldReceive('forget')->once()->with('session_id')->andReturn(true);
 
@@ -67,14 +67,14 @@ class CacheBasedSessionHandlerTest extends TestCase
         $this->assertTrue($result);
     }
 
-    public function test_gc_returns_zero()
+    public function testGcReturnsZero()
     {
         $result = $this->sessionHandler->gc(lifetime: 120);
 
         $this->assertEquals(0, $result);
     }
 
-    public function test_get_cache_returns_cache_instance()
+    public function testGetCacheReturnsCacheInstance()
     {
         $cacheInstance = $this->sessionHandler->getCache();
 

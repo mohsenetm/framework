@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class NumberTypeTest extends TestCase
 {
-    public function test_it_may_set_min_value_as_float(): void
+    public function testItMaySetMinValueAsFloat(): void
     {
         $type = JsonSchema::number()->title('Price')->min(5.5);
 
@@ -18,7 +18,7 @@ class NumberTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_it_may_set_min_value_as_int(): void
+    public function testItMaySetMinValueAsInt(): void
     {
         $type = JsonSchema::number()->title('Price')->min(5);
 
@@ -29,7 +29,7 @@ class NumberTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_it_may_set_max_value_as_float(): void
+    public function testItMaySetMaxValueAsFloat(): void
     {
         $type = JsonSchema::number()->description('Max price')->max(10.75);
 
@@ -40,7 +40,7 @@ class NumberTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_it_may_set_max_value_as_int(): void
+    public function testItMaySetMaxValueAsInt(): void
     {
         $type = JsonSchema::number()->description('Max price')->max(10);
 
@@ -51,7 +51,7 @@ class NumberTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_it_may_set_default_value(): void
+    public function testItMaySetDefaultValue(): void
     {
         $type = JsonSchema::number()->default(9.99);
 
@@ -61,7 +61,7 @@ class NumberTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_it_may_set_enum(): void
+    public function testItMaySetEnum(): void
     {
         $type = JsonSchema::number()->enum([1, 2.5, 3]);
 

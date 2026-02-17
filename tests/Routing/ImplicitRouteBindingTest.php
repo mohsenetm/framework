@@ -13,7 +13,7 @@ include_once 'Enums.php';
 
 class ImplicitRouteBindingTest extends TestCase
 {
-    public function test_it_can_resolve_the_implicit_backed_enum_route_bindings_for_the_given_route()
+    public function testItCanResolveTheImplicitBackedEnumRouteBindingsForTheGivenRoute()
     {
         $action = ['uses' => function (CategoryBackedEnum $category) {
             return $category->value;
@@ -31,7 +31,7 @@ class ImplicitRouteBindingTest extends TestCase
         $this->assertSame('fruits', $route->parameter('category')->value);
     }
 
-    public function test_it_can_resolve_the_implicit_backed_enum_route_bindings_for_the_given_route_with_optional_parameter()
+    public function testItCanResolveTheImplicitBackedEnumRouteBindingsForTheGivenRouteWithOptionalParameter()
     {
         $action = ['uses' => function (?CategoryBackedEnum $category = null) {
             return $category->value;
@@ -49,7 +49,7 @@ class ImplicitRouteBindingTest extends TestCase
         $this->assertSame('fruits', $route->parameter('category')->value);
     }
 
-    public function test_it_handles_optional_implicit_backed_enum_route_bindings_for_the_given_route_with_optional_parameter()
+    public function testItHandlesOptionalImplicitBackedEnumRouteBindingsForTheGivenRouteWithOptionalParameter()
     {
         $action = ['uses' => function (?CategoryBackedEnum $category = null) {
             return $category->value;
@@ -67,7 +67,7 @@ class ImplicitRouteBindingTest extends TestCase
         $this->assertNull($route->parameter('category'));
     }
 
-    public function test_it_does_not_resolve_implicit_non_backed_enum_route_bindings_for_the_given_route()
+    public function testItDoesNotResolveImplicitNonBackedEnumRouteBindingsForTheGivenRoute()
     {
         $action = ['uses' => function (CategoryEnum $category) {
             return $category->value;
@@ -86,7 +86,7 @@ class ImplicitRouteBindingTest extends TestCase
         $this->assertSame('fruits', $route->parameter('category'));
     }
 
-    public function test_implicit_backed_enum_internal_exception()
+    public function testImplicitBackedEnumInternalException()
     {
         $action = ['uses' => function (CategoryBackedEnum $category) {
             return $category->value;
@@ -109,7 +109,7 @@ class ImplicitRouteBindingTest extends TestCase
         ImplicitRouteBinding::resolveForRoute($container, $route);
     }
 
-    public function test_it_can_resolve_the_implicit_model_route_bindings_for_the_given_route()
+    public function testItCanResolveTheImplicitModelRouteBindingsForTheGivenRoute()
     {
         $this->expectNotToPerformAssertions();
 

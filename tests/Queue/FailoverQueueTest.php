@@ -18,7 +18,7 @@ class FailoverQueueTest extends TestCase
         parent::tearDown();
     }
 
-    public function test_push_fails_over_on_exception()
+    public function testPushFailsOverOnException()
     {
         $failover = new FailoverQueue($queue = m::mock(QueueManager::class), $events = m::mock(Dispatcher::class), [
             'redis',

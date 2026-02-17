@@ -63,7 +63,7 @@ class SupportFacadesHttpTest extends TestCase
         $this->assertSame($client, $this->app->make(Factory::class));
     }
 
-    public function test_can_set_prevents_to_prevents_stray_requests(): void
+    public function testCanSetPreventsToPreventsStrayRequests(): void
     {
         Http::preventStrayRequests(true);
         $this->assertTrue($this->app->make(Factory::class)->preventingStrayRequests());

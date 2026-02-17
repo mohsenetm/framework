@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class HigherOrderProxyTest extends TestCase
 {
-    public function test_get_proxies_property_access_to_items()
+    public function testGetProxiesPropertyAccessToItems()
     {
         $items = new Collection([
             (object) ['name' => 'Alice'],
@@ -23,7 +23,7 @@ class HigherOrderProxyTest extends TestCase
         $this->assertEquals(['Alice', 'Bob'], $proxy->name->all());
     }
 
-    public function test_call_proxies_method_call_to_items()
+    public function testCallProxiesMethodCallToItems()
     {
         $items = new Collection([
             new class
@@ -49,7 +49,7 @@ class HigherOrderProxyTest extends TestCase
         $this->assertEquals(['HEY', 'HEY!'], $result->all());
     }
 
-    public function test_call_forwards_and_returns_target()
+    public function testCallForwardsAndReturnsTarget()
     {
         $target = new class
         {

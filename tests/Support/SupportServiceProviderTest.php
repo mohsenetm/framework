@@ -197,7 +197,7 @@ class SupportServiceProviderTest extends TestCase
         $provider->loadTranslationsFrom(__DIR__.'/translations', 'namespace');
     }
 
-    public function test_can_remove_provider()
+    public function testCanRemoveProvider()
     {
         $this->tempFile = __DIR__.'/providers.php';
         file_put_contents($this->tempFile, $contents = <<< PHP

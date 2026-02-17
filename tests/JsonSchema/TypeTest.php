@@ -18,7 +18,7 @@ use Stringable;
 
 class TypeTest extends TestCase
 {
-    public function test_as_a_array_representation(): void
+    public function testAsAArrayRepresentation(): void
     {
         $type = JsonSchema::object([
             'age' => JsonSchema::integer()->min(0)->required(),
@@ -39,7 +39,7 @@ class TypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_does_have_a_string_representation(): void
+    public function testDoesHaveAStringRepresentation(): void
     {
         $type = JsonSchema::object([
             'age' => JsonSchema::integer()->min(0)->required(),
@@ -62,7 +62,7 @@ class TypeTest extends TestCase
         JSON, $type->toString());
     }
 
-    public function test_does_have_a_stringable_representation(): void
+    public function testDoesHaveAStringableRepresentation(): void
     {
         $type = JsonSchema::object([
             'age' => JsonSchema::integer()->min(0)->required(),
@@ -86,18 +86,18 @@ class TypeTest extends TestCase
     }
 
     #[DataProvider('validSchemasProvider')]
-    public function test_produces_valid_json_schemas(Stringable $schema, mixed $data): void
+    public function testProducesValidJsonSchemas(Stringable $schema, mixed $data): void
     {
         $this->assertValidOnJsonSchema($schema, $data);
     }
 
     #[DataProvider('invalidSchemasProvider')]
-    public function test_produces_invalid_json_schemas(Stringable $schema, mixed $data): void
+    public function testProducesInvalidJsonSchemas(Stringable $schema, mixed $data): void
     {
         $this->assertNotValidOnJsonSchema($schema, $data);
     }
 
-    public function test_types_in_object_schema(): void
+    public function testTypesInObjectSchema(): void
     {
         $schema = JsonSchema::object(fn (JsonSchema $schema): array => [
             'name' => $schema->string()->required(),
@@ -107,7 +107,7 @@ class TypeTest extends TestCase
         $this->assertInstanceOf(JsonSchema::class, $schema);
     }
 
-    public function test_throws_with_invalid_enum_string(): void
+    public function testThrowsWithInvalidEnumString(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('The provided class must be a BackedEnum.');
@@ -116,7 +116,7 @@ class TypeTest extends TestCase
         JsonSchema::string()->enum('NonExistentEnumClass');
     }
 
-    public function test_throws_with_not_an_enum_class(): void
+    public function testThrowsWithNotAnEnumClass(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('The provided class must be a BackedEnum.');
@@ -125,7 +125,7 @@ class TypeTest extends TestCase
         JsonSchema::string()->enum(stdClass::class);
     }
 
-    public function test_throws_with_unit_enum_class(): void
+    public function testThrowsWithUnitEnumClass(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('The provided class must be a BackedEnum.');

@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 class RouteBindingTest extends TestCase
 {
-    public function test_it_can_resolve_the_explicit_model_for_the_given_route()
+    public function testItCanResolveTheExplicitModelForTheGivenRoute()
     {
         $container = Container::getInstance();
 
@@ -23,7 +23,7 @@ class RouteBindingTest extends TestCase
         $this->assertInstanceOf(ExplicitRouteBindingUser::class, $callback(1, $route));
     }
 
-    public function test_it_cannot_resolve_the_explicit_soft_deleted_model_for_the_given_route()
+    public function testItCannotResolveTheExplicitSoftDeletedModelForTheGivenRoute()
     {
         $container = Container::getInstance();
 
@@ -36,7 +36,7 @@ class RouteBindingTest extends TestCase
         $callback(1, $route);
     }
 
-    public function test_it_can_resolve_the_explicit_soft_deleted_model_for_the_given_route_with_trashed()
+    public function testItCanResolveTheExplicitSoftDeletedModelForTheGivenRouteWithTrashed()
     {
         $container = Container::getInstance();
 

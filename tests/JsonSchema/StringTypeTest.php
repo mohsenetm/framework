@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class StringTypeTest extends TestCase
 {
-    public function test_it_sets_min_length()
+    public function testItSetsMinLength()
     {
         $type = (new StringType)->min(5);
 
@@ -17,7 +17,7 @@ class StringTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_it_sets_max_length()
+    public function testItSetsMaxLength()
     {
         $type = (new StringType)->description('User handle')->max(10);
 
@@ -28,7 +28,7 @@ class StringTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_it_sets_pattern()
+    public function testItSetsPattern()
     {
         $type = (new StringType)->default('foo')->pattern('^foo.*$');
 
@@ -39,7 +39,7 @@ class StringTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_it_sets_format()
+    public function testItSetsFormat()
     {
         $type = (new StringType)->default('foo')->format('date');
 
@@ -50,7 +50,7 @@ class StringTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_it_sets_enum()
+    public function testItSetsEnum()
     {
         $type = (new StringType)->enum(['draft', 'published']);
 

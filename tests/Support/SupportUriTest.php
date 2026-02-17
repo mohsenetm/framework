@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class SupportUriTest extends TestCase
 {
-    public function test_can_build_special_urls()
+    public function testCanBuildSpecialUrls()
     {
         Uri::setUrlGeneratorResolver(fn () => new CustomUrlGeneratorResolver);
 
@@ -19,7 +19,7 @@ class SupportUriTest extends TestCase
         $this->assertEquals('https://laravel.com/action', Uri::action('')->value());
     }
 
-    public function test_basic_uri_interactions()
+    public function testBasicUriInteractions()
     {
         $uri = Uri::of($originalUri = 'https://laravel.com/docs/installation');
 
@@ -44,7 +44,7 @@ class SupportUriTest extends TestCase
         $this->assertEquals(1, $uri->query()->integer('version'));
     }
 
-    public function test_complicated_query_string_parsing()
+    public function testComplicatedQueryStringParsing()
     {
         $uri = Uri::of('https://example.com/users?key_1=value&key_2[sub_field]=value&key_3[]=value&key_4[9]=value&key_5[][][foo][9]=bar&key.6=value&flag_value');
 
@@ -75,7 +75,7 @@ class SupportUriTest extends TestCase
         $this->assertEquals('key_1=value&key_2[sub_field]=value&key_3[]=value&key_4[9]=value&key_5[][][foo][9]=bar&key.6=value&flag_value', $uri->query()->decode());
     }
 
-    public function test_uri_building()
+    public function testUriBuilding()
     {
         $uri = Uri::of();
 
@@ -90,7 +90,7 @@ class SupportUriTest extends TestCase
         $this->assertEquals('https://taylor:password@laravel.com:80/docs/installation?version=1#hello', (string) $uri);
     }
 
-    public function test_complicated_query_string_manipulation()
+    public function testComplicatedQueryStringManipulation()
     {
         $uri = Uri::of('https://laravel.com');
 
@@ -124,7 +124,7 @@ class SupportUriTest extends TestCase
         $this->assertEquals(['tag' => ['foo', 'bar']], $uri->pushOntoQuery('tag', 'bar')->query()->all());
     }
 
-    public function test_query_strings_with_dots_can_be_replaced_or_merged_consistently()
+    public function testQueryStringsWithDotsCanBeReplacedOrMergedConsistently()
     {
         $uri = Uri::of('https://dot.test/?foo.bar=baz');
 
@@ -132,14 +132,14 @@ class SupportUriTest extends TestCase
         $this->assertEquals('foo[bar]=zab', $uri->replaceQuery(['foo.bar' => 'zab'])->query()->decode());
     }
 
-    public function test_decoding_the_entire_uri()
+    public function testDecodingTheEntireUri()
     {
         $uri = Uri::of('https://laravel.com/docs/11.x/installation')->withQuery(['tags' => ['first', 'second']]);
 
         $this->assertEquals('https://laravel.com/docs/11.x/installation?tags[0]=first&tags[1]=second', $uri->decode());
     }
 
-    public function test_with_query_if_missing()
+    public function testWithQueryIfMissing()
     {
         // Test adding new parameters while preserving existing ones
         $uri = Uri::of('https://laravel.com?existing=value');
@@ -201,7 +201,7 @@ class SupportUriTest extends TestCase
         ], $uri->query()->all());
     }
 
-    public function test_with_query_prevents_empty_query_string()
+    public function testWithQueryPreventsEmptyQueryString()
     {
         $uri = Uri::of('https://laravel.com');
 
@@ -209,7 +209,7 @@ class SupportUriTest extends TestCase
         $this->assertEquals('https://laravel.com', (string) $uri->withQuery([]));
     }
 
-    public function test_path_segments()
+    public function testPathSegments()
     {
         $uri = Uri::of('https://laravel.com');
 
@@ -233,7 +233,7 @@ class SupportUriTest extends TestCase
         $this->assertEquals(3, $uri->pathSegments()->count());
     }
 
-    public function test_macroable()
+    public function testMacroable()
     {
         Uri::macro('myMacro', function () {
             return $this->withPath('foobar');

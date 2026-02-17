@@ -16,26 +16,26 @@ class ArraySessionHandlerTest extends TestCase
         parent::tearDown();
     }
 
-    public function test_it_implements_the_session_handler_interface()
+    public function testItImplementsTheSessionHandlerInterface()
     {
         $this->assertInstanceOf(SessionHandlerInterface::class, new ArraySessionHandler(10));
     }
 
-    public function test_it_initializes_the_session()
+    public function testItInitializesTheSession()
     {
         $handler = new ArraySessionHandler(10);
 
         $this->assertTrue($handler->open('', ''));
     }
 
-    public function test_it_closes_the_session()
+    public function testItClosesTheSession()
     {
         $handler = new ArraySessionHandler(10);
 
         $this->assertTrue($handler->close());
     }
 
-    public function test_it_reads_data_from_the_session()
+    public function testItReadsDataFromTheSession()
     {
         $handler = new ArraySessionHandler(10);
 
@@ -44,7 +44,7 @@ class ArraySessionHandlerTest extends TestCase
         $this->assertSame('bar', $handler->read('foo'));
     }
 
-    public function test_it_reads_data_from_an_almost_expired_session()
+    public function testItReadsDataFromAnAlmostExpiredSession()
     {
         $handler = new ArraySessionHandler(10);
 
@@ -55,7 +55,7 @@ class ArraySessionHandlerTest extends TestCase
         $this->assertSame('bar', $handler->read('foo'));
     }
 
-    public function test_it_reads_data_from_an_expired_session()
+    public function testItReadsDataFromAnExpiredSession()
     {
         $handler = new ArraySessionHandler(10);
 
@@ -66,14 +66,14 @@ class ArraySessionHandlerTest extends TestCase
         $this->assertSame('', $handler->read('foo'));
     }
 
-    public function test_it_reads_data_from_a_non_existing_session()
+    public function testItReadsDataFromANonExistingSession()
     {
         $handler = new ArraySessionHandler(10);
 
         $this->assertSame('', $handler->read('foo'));
     }
 
-    public function test_it_writes_session_data()
+    public function testItWritesSessionData()
     {
         $handler = new ArraySessionHandler(10);
 
@@ -84,7 +84,7 @@ class ArraySessionHandlerTest extends TestCase
         $this->assertSame('baz', $handler->read('foo'));
     }
 
-    public function test_it_destroys_a_session()
+    public function testItDestroysASession()
     {
         $handler = new ArraySessionHandler(10);
 
@@ -96,7 +96,7 @@ class ArraySessionHandlerTest extends TestCase
         $this->assertSame('', $handler->read('foo'));
     }
 
-    public function test_it_cleans_up_old_sessions()
+    public function testItCleansUpOldSessions()
     {
         $handler = new ArraySessionHandler(10);
 

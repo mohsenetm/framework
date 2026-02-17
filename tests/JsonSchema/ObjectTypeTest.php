@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class ObjectTypeTest extends TestCase
 {
-    public function test_it_may_not_have_properties(): void
+    public function testItMayNotHaveProperties(): void
     {
         $type = JsonSchema::object()->title('Payload');
 
@@ -18,7 +18,7 @@ class ObjectTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_it_may_be_initialized_with_a_closure_but_without_properties(): void
+    public function testItMayBeInitializedWithAClosureButWithoutProperties(): void
     {
         $type = JsonSchema::object(fn () => [])->title('Payload');
 
@@ -28,7 +28,7 @@ class ObjectTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_it_may_have_properties(): void
+    public function testItMayHaveProperties(): void
     {
         $type = JsonSchema::object([
             'age-a' => JsonSchema::integer()->min(0)->required(),
@@ -53,7 +53,7 @@ class ObjectTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_it_may_be_initialized_with_a_closure_but_may_have_properties(): void
+    public function testItMayBeInitializedWithAClosureButMayHaveProperties(): void
     {
         $type = JsonSchema::object(fn (JsonSchemaTypeFactory $schema) => [
             'age-a' => $schema->integer()->min(0)->required(),
@@ -78,7 +78,7 @@ class ObjectTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_it_may_disable_additional_properties(): void
+    public function testItMayDisableAdditionalProperties(): void
     {
         $type = JsonSchema::object()->default(['age' => 1])->withoutAdditionalProperties();
 
@@ -89,7 +89,7 @@ class ObjectTypeTest extends TestCase
         ], $type->toArray());
     }
 
-    public function test_it_may_set_enum(): void
+    public function testItMaySetEnum(): void
     {
         $type = JsonSchema::object()->enum([
             ['a' => 1],

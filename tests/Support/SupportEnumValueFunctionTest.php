@@ -12,12 +12,12 @@ include_once 'Enums.php';
 class SupportEnumValueFunctionTest extends TestCase
 {
     #[DataProvider('scalarDataProvider')]
-    public function test_it_can_handle_enum_value($given, $expected)
+    public function testItCanHandleEnumValue($given, $expected)
     {
         $this->assertSame($expected, enum_value($given));
     }
 
-    public function test_it_can_fallback_to_use_default_if_value_is_null()
+    public function testItCanFallbackToUseDefaultIfValueIsNull()
     {
         $this->assertSame('laravel', enum_value(null, 'laravel'));
         $this->assertSame('laravel', enum_value(null, fn () => 'laravel'));

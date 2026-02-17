@@ -30,7 +30,7 @@ class ContextTest extends TestCase
         parent::tearDown();
     }
 
-    public function test_it_can_set_values()
+    public function testItCanSetValues()
     {
         $values = [
             'string' => 'string',
@@ -54,7 +54,7 @@ class ContextTest extends TestCase
         }
     }
 
-    public function test_it_can_add_values_when_not_already_present()
+    public function testItCanAddValuesWhenNotAlreadyPresent()
     {
         Context::addIf('foo', 1);
         $this->assertSame(1, Context::get('foo'));
@@ -63,7 +63,7 @@ class ContextTest extends TestCase
         $this->assertSame(1, Context::get('foo'));
     }
 
-    public function test_it_can_listen_to_the_hydrating_event()
+    public function testItCanListenToTheHydratingEvent()
     {
         Context::add('one', 1);
         Context::add('two', 2);
@@ -78,7 +78,7 @@ class ContextTest extends TestCase
         $this->assertSame(3, Context::get('three'));
     }
 
-    public function test_it_can_listen_to_the_dehydrated_event()
+    public function testItCanListenToTheDehydratedEvent()
     {
         Context::add('one', 1);
         Context::add('two', 2);
@@ -93,7 +93,7 @@ class ContextTest extends TestCase
         $this->assertSame(3, Context::get('three'));
     }
 
-    public function test_it_can_modify_context_while_dehydrating_without_impacting_global_instance()
+    public function testItCanModifyContextWhileDehydratingWithoutImpactingGlobalInstance()
     {
         Context::add('one', 1);
         Context::dehydrating(function (Repository $context) {
@@ -107,12 +107,12 @@ class ContextTest extends TestCase
         $this->assertSame(99, Context::get('one'));
     }
 
-    public function test_dehydrate_returns_null_when_empty()
+    public function testDehydrateReturnsNullWhenEmpty()
     {
         $this->assertNull(Context::dehydrate());
     }
 
-    public function test_hydrating_null_triggers_hydrating_event()
+    public function testHydratingNullTriggersHydratingEvent()
     {
         $called = false;
         Context::hydrated(function () use (&$called) {
@@ -124,7 +124,7 @@ class ContextTest extends TestCase
         $this->assertTrue($called);
     }
 
-    public function test_it_can_serialize_values()
+    public function testItCanSerializeValues()
     {
         Context::add([
             'string' => 'string',
@@ -178,7 +178,7 @@ class ContextTest extends TestCase
         $this->assertSame(Context::getHidden('number'), 55);
     }
 
-    public function test_it_can_push_to_list()
+    public function testItCanPushToList()
     {
         Context::push('breadcrumbs', 'foo');
         Context::push('breadcrumbs', 'bar');
@@ -187,7 +187,7 @@ class ContextTest extends TestCase
         $this->assertSame(['foo', 'bar', 'baz', 'qux'], Context::get('breadcrumbs'));
     }
 
-    public function test_throws_when_pushing_to_non_array()
+    public function testThrowsWhenPushingToNonArray()
     {
         Context::add('breadcrumbs', 'foo');
 
@@ -196,7 +196,7 @@ class ContextTest extends TestCase
         Context::push('breadcrumbs', 'bar');
     }
 
-    public function test_throws_when_pushing_to_non_list_array()
+    public function testThrowsWhenPushingToNonListArray()
     {
         Context::add('breadcrumbs', ['foo' => 'bar']);
 
@@ -205,7 +205,7 @@ class ContextTest extends TestCase
         Context::push('breadcrumbs', 'bar');
     }
 
-    public function test_it_can_pop_from_list()
+    public function testItCanPopFromList()
     {
         Context::push('breadcrumbs', 'foo', 'bar');
 
@@ -214,7 +214,7 @@ class ContextTest extends TestCase
         $this->assertSame([], Context::get('breadcrumbs'));
     }
 
-    public function test_throws_when_popping_from_empty_list()
+    public function testThrowsWhenPoppingFromEmptyList()
     {
         Context::push('breadcrumbs', 'bar');
         Context::pop('breadcrumbs');
@@ -225,7 +225,7 @@ class ContextTest extends TestCase
         Context::pop('breadcrumbs');
     }
 
-    public function test_throws_when_popping_from_non_list_array()
+    public function testThrowsWhenPoppingFromNonListArray()
     {
         Context::add('breadcrumbs', ['foo' => 'bar']);
 
@@ -234,7 +234,7 @@ class ContextTest extends TestCase
         Context::pop('breadcrumbs');
     }
 
-    public function test_it_can_pop_from_hidden_list()
+    public function testItCanPopFromHiddenList()
     {
         Context::pushHidden('breadcrumbs', 'foo', 'bar');
 
@@ -243,7 +243,7 @@ class ContextTest extends TestCase
         $this->assertSame([], Context::getHidden('breadcrumbs'));
     }
 
-    public function test_throws_when_popping_from_empty_hidden_list()
+    public function testThrowsWhenPoppingFromEmptyHiddenList()
     {
         Context::pushHidden('breadcrumbs', 'bar');
         Context::popHidden('breadcrumbs');
@@ -254,7 +254,7 @@ class ContextTest extends TestCase
         Context::popHidden('breadcrumbs');
     }
 
-    public function test_throws_when_popping_from_hidden_non_list_array()
+    public function testThrowsWhenPoppingFromHiddenNonListArray()
     {
         Context::addHidden('breadcrumbs', ['foo' => 'bar']);
 
@@ -263,7 +263,7 @@ class ContextTest extends TestCase
         Context::popHidden('breadcrumbs');
     }
 
-    public function test_it_can_check_if_context_has_been_set()
+    public function testItCanCheckIfContextHasBeenSet()
     {
         Context::add('foo', 'bar');
         Context::add('null', null);
@@ -273,7 +273,7 @@ class ContextTest extends TestCase
         $this->assertFalse(Context::has('unset'));
     }
 
-    public function test_it_can_check_if_context_is_missing()
+    public function testItCanCheckIfContextIsMissing()
     {
         Context::add('foo', 'bar');
 
@@ -281,7 +281,7 @@ class ContextTest extends TestCase
         $this->assertFalse(Context::missing('foo'));
     }
 
-    public function test_it_can_check_if_value_is_in_context_stack()
+    public function testItCanCheckIfValueIsInContextStack()
     {
         Context::push('foo', 'bar', 'lorem');
 
@@ -290,7 +290,7 @@ class ContextTest extends TestCase
         $this->assertFalse(Context::stackContains('foo', 'doesNotExist'));
     }
 
-    public function test_it_can_check_if_value_is_in_context_stack_with_closures()
+    public function testItCanCheckIfValueIsInContextStackWithClosures()
     {
         Context::push('foo', 'bar', ['lorem'], 123);
         Context::pushHidden('baz');
@@ -299,7 +299,7 @@ class ContextTest extends TestCase
         $this->assertFalse(Context::stackContains('foo', fn ($value) => $value === 'baz'));
     }
 
-    public function test_it_can_check_if_value_is_in_hidden_context_stack()
+    public function testItCanCheckIfValueIsInHiddenContextStack()
     {
         Context::pushHidden('foo', 'bar', 'lorem');
 
@@ -308,7 +308,7 @@ class ContextTest extends TestCase
         $this->assertFalse(Context::hiddenStackContains('foo', 'doesNotExist'));
     }
 
-    public function test_it_can_check_if_value_is_in_hidden_context_stack_with_closures()
+    public function testItCanCheckIfValueIsInHiddenContextStackWithClosures()
     {
         Context::pushHidden('foo', 'baz');
         Context::push('foo', 'bar', ['lorem'], 123);
@@ -317,14 +317,14 @@ class ContextTest extends TestCase
         $this->assertFalse(Context::hiddenStackContains('foo', fn ($value) => $value === 'bar'));
     }
 
-    public function test_it_cannot_check_if_hidden_value_is_in_non_hidden_context_stack()
+    public function testItCannotCheckIfHiddenValueIsInNonHiddenContextStack()
     {
         Context::pushHidden('foo', 'bar', 'lorem');
 
         $this->assertFalse(Context::stackContains('foo', 'bar'));
     }
 
-    public function test_it_can_get_all_values()
+    public function testItCanGetAllValues()
     {
         Context::add('foo', 'bar');
         Context::add('null', null);
@@ -335,14 +335,14 @@ class ContextTest extends TestCase
         ], Context::all());
     }
 
-    public function test_it_silently_ignores_unset_values()
+    public function testItSilentlyIgnoresUnsetValues()
     {
         $this->assertNull(Context::get('foo'));
         $this->assertFalse(Context::has('foo'));
         $this->assertSame([], Context::all());
     }
 
-    public function test_it_is_simple_key_value_system()
+    public function testItIsSimpleKeyValueSystem()
     {
         Context::add('parent.child', 5);
 
@@ -350,7 +350,7 @@ class ContextTest extends TestCase
         $this->assertSame(5, Context::get('parent.child'));
     }
 
-    public function test_it_can_retrieve_subset_of_context()
+    public function testItCanRetrieveSubsetOfContext()
     {
         Context::add('parent.child.1', 5);
         Context::add('parent.child.2', 6);
@@ -365,7 +365,7 @@ class ContextTest extends TestCase
         ]));
     }
 
-    public function test_it_can_exclude_subset_of_context()
+    public function testItCanExcludeSubsetOfContext()
     {
         Context::add('parent.child.1', 5);
         Context::add('parent.child.2', 6);
@@ -379,7 +379,7 @@ class ContextTest extends TestCase
         ]));
     }
 
-    public function test_it_can_exclude_subset_of_hidden_context()
+    public function testItCanExcludeSubsetOfHiddenContext()
     {
         Context::addHidden('parent.child.1', 5);
         Context::addHidden('parent.child.2', 6);
@@ -393,7 +393,7 @@ class ContextTest extends TestCase
         ]));
     }
 
-    public function test_it_adds_context_to_logging()
+    public function testItAddsContextToLogging()
     {
         $path = storage_path('logs/laravel.log');
         file_put_contents($path, '');
@@ -416,7 +416,7 @@ class ContextTest extends TestCase
         Str::createUuidsNormally();
     }
 
-    public function test_it_doesnt_override_log_instance_context()
+    public function testItDoesntOverrideLogInstanceContext()
     {
         $path = storage_path('logs/laravel.log');
         file_put_contents($path, '');
@@ -435,7 +435,7 @@ class ContextTest extends TestCase
         Str::createUuidsNormally();
     }
 
-    public function test_it_doesnt_allow_context_to_be_used_as_parameters()
+    public function testItDoesntAllowContextToBeUsedAsParameters()
     {
         $path = storage_path('logs/laravel.log');
         file_put_contents($path, '');
@@ -452,7 +452,7 @@ class ContextTest extends TestCase
         Str::createUuidsNormally();
     }
 
-    public function test_does_not_add_hidden_context_to_logging()
+    public function testDoesNotAddHiddenContextToLogging()
     {
         $path = storage_path('logs/laravel.log');
         file_put_contents($path, '');
@@ -472,7 +472,7 @@ class ContextTest extends TestCase
         Str::createUuidsNormally();
     }
 
-    public function test_it_can_add_hidden()
+    public function testItCanAddHidden()
     {
         Context::addHidden('foo', 'data');
 
@@ -500,7 +500,7 @@ class ContextTest extends TestCase
         Context::pushHidden('foo', 2);
     }
 
-    public function test_it_can_pull()
+    public function testItCanPull()
     {
         Context::add('foo', 'data');
 
@@ -513,7 +513,7 @@ class ContextTest extends TestCase
         $this->assertNull(Context::getHidden('foo'));
     }
 
-    public function test_it_adds_context_to_logged_exceptions()
+    public function testItAddsContextToLoggedExceptions()
     {
         $path = storage_path('logs/laravel.log');
         file_put_contents($path, '');
@@ -533,7 +533,7 @@ class ContextTest extends TestCase
         Str::createUuidsNormally();
     }
 
-    public function test_scope_sets_keys_and_restores()
+    public function testScopeSetsKeysAndRestores()
     {
         $contextInClosure = [];
         $callback = function () use (&$contextInClosure) {
@@ -583,7 +583,7 @@ class ContextTest extends TestCase
         ], Context::allHidden());
     }
 
-    public function test_uses_closure_for_context_processor()
+    public function testUsesClosureForContextProcessor()
     {
         $path = storage_path('logs/laravel.log');
         file_put_contents($path, '');
@@ -612,7 +612,7 @@ class ContextTest extends TestCase
         file_put_contents($path, '');
     }
 
-    public function test_can_rebind_to_separate_class()
+    public function testCanRebindToSeparateClass()
     {
         $path = storage_path('logs/laravel.log');
         file_put_contents($path, '');
@@ -632,7 +632,7 @@ class ContextTest extends TestCase
         file_put_contents($path, '');
     }
 
-    public function test_it_increments_a_counter()
+    public function testItIncrementsACounter()
     {
         Context::increment('foo');
         $this->assertSame(1, Context::get('foo'));
@@ -641,7 +641,7 @@ class ContextTest extends TestCase
         $this->assertSame(2, Context::get('foo'));
     }
 
-    public function test_it_custom_increments_a_counter()
+    public function testItCustomIncrementsACounter()
     {
         Context::increment('foo', 2);
         $this->assertSame(2, Context::get('foo'));
@@ -650,21 +650,21 @@ class ContextTest extends TestCase
         $this->assertSame(5, Context::get('foo'));
     }
 
-    public function test_it_decrements_a_counter()
+    public function testItDecrementsACounter()
     {
         Context::increment('foo');
         Context::decrement('foo');
         $this->assertSame(0, Context::get('foo'));
     }
 
-    public function test_it_custom_decrements_a_counter()
+    public function testItCustomDecrementsACounter()
     {
         Context::increment('foo', 2);
         Context::decrement('foo', 2);
         $this->assertSame(0, Context::get('foo'));
     }
 
-    public function test_it_remembers_a_value()
+    public function testItRemembersAValue()
     {
         $this->assertSame(1, Context::remember('int', 1));
 
@@ -682,7 +682,7 @@ class ContextTest extends TestCase
         $this->assertSame(1, $closureRunCount);
     }
 
-    public function test_it_remembers_a_hidden_value()
+    public function testItRemembersAHiddenValue()
     {
         $this->assertSame(1, Context::rememberHidden('int', 1));
 
